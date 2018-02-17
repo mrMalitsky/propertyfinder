@@ -1,18 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpModule} from "@angular/http";
 
 
 import { AppComponent } from './app.component';
-
+import { FinderComponent } from './finder/finder.component';
+import { PriorityService } from './shared/services/priority/priority.service';
+import { CommonService } from './shared/services/common.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FinderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [CommonService, PriorityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
