@@ -118,6 +118,10 @@ export class PriorityService {
     });
   }
 
+  getCountries() {
+    return Object.keys(this.vertices);
+  }
+
   compareValues(value1: any, value2: any) {
       return value1 < value2;
   }

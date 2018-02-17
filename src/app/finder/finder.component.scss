@@ -1,0 +1,128 @@
+#main{
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background: url("../../assets/img/dubai3.jpg");
+
+  .info{
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.84);
+    border-radius: 7px;
+
+    app-search-form{
+      transition: all .5s ease;
+
+      &.right{
+        transform: translateX(100%);
+        -webkit-transform: translateX(130%);
+      }
+    }
+
+    .text{
+      position: absolute;
+      width: 48%;
+      height: 67%;
+      margin: auto;
+      top: 0;
+      color: #fff;
+      font-size: 2.3vw;
+      bottom: 0;
+      /* left: 0; */
+      right: 0;
+      margin: auto 3%;
+    }
+    .route{
+      width: 50%;
+      display: block;
+      position: absolute;
+      height: 100%;
+      overflow: auto;
+      padding: 1% 2%;
+      box-sizing: border-box;
+
+      .res-message{
+        font-size: 28px;
+        text-align: left;
+        color: #fff;
+        height: 15%;
+      }
+
+      &.scroll{
+        direction:rtl;
+        &::-webkit-scrollbar-track
+          {
+          	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+          	border-radius: 10px;
+          	background-color: #F5F5F5;
+
+          }
+
+          &::-webkit-scrollbar
+          {
+          	width: 12px;
+          	background-color: #F5F5F5;
+          }
+
+          &::-webkit-scrollbar-thumb
+          {
+          	border-radius: 10px;
+          	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+          	background-color: #555;
+          }
+      }
+
+
+      div{
+        position: relative;
+        width: 100%;
+        height: 25%;
+
+        strong{
+          position: absolute;
+          left: -16px;
+          top: 30%;
+          color: #fff;
+        }
+      }
+
+      .button-container{
+        p-button{
+          float: right;
+        }
+      }
+    }
+  }
+
+ .noise {
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    position: relative;
+    background-image: inherit;
+    overflow: hidden;
+      &:before{
+        content: '';
+        width: calc(100% + 50px);
+        height: calc(100% + 50px);
+        background: inherit;
+        position: absolute;
+        left: -25px;
+        top: -25px;
+        box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
+        filter: blur(3px);
+        /* filter: url(#blur-filter); */
+      }
+  }
+}

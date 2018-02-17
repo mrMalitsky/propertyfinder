@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PriorityService } from '../shared/services/priority/priority.service';
 import { CommonService } from '../shared/services/common.service';
 import { IData } from '../shared/interfaces/IData';
 import { FilterTypes } from '../shared/app.constants';
+import {SearchFormComponent} from './search-form/search-form.component'
 
 @Component({
   selector: 'app-finder',
   templateUrl: './finder.component.html',
-  styleUrls: ['./finder.component.css']
+  styleUrls: ['./finder.component.scss']
 })
 export class FinderComponent implements OnInit {
 
+  @ViewChild(SearchFormComponent) searchFormComponent: SearchFormComponent
+
   public  data: IData;
   public currency: string;
+  public countries: Array<string>;
+  public result: any;
   // public  data: IData = {'currency': 'EUR',
   //   deals: [
   //     {'transport': 'train', 'departure': 'London', 'arrival': 'Amsterdam', 'cost': 160, "discount": 0, "duration": {
@@ -49,15 +54,26 @@ export class FinderComponent implements OnInit {
      .subscribe(resData => {
        this.data = resData;
        this.currency = resData.currency;
-
+        // Prepare data for searching
         this._priorityService.prepareData(this.data.deals, FilterTypes.duration);
-
-        this._priorityService.shortestPath('Athens', 'Moscow', FilterTypes.duration).map((path) => {
-          console.log(this.data.deals[path.id])
-        })
+        // Get countries list
+        this.countries = this._priorityService.getCountries();
       });
-
   }
+
+  onSearch(e) {
+    // Searching
+    this.result = this._priorityService.shortestPath(e.from, e.to, e.type).map((path) =>  this.data.deals[path.id]);
+  }
+
+  reset() {
+    this.result = null;
+    this.searchFormComponent.countruForm = null;
+    this.searchFormComponent.countruTo = null;
+    this.searchFormComponent.selectedType = FilterTypes.cost;
+  }
+
+
 
 
 }

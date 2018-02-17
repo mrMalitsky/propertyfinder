@@ -1,3 +1,21 @@
-<p>
-  finder works!
-</p>
+<div id="main">
+  <div class="noise">
+    <div class="info">
+      <app-search-form [ngClass]="{'right': result}" [countries]="countries" (search)="onSearch($event)"></app-search-form>
+      <div *ngIf="!result" class="text">
+        If you want to get right route - please, fill in the form!
+      </div>
+      <div *ngIf="result" class="route scroll">
+        <div class="res-message">Proposed Route:</div>
+        <div *ngFor="let item of result; index as i;">
+          <strong>{{i}}</strong>
+          <app-route [item]="item" [currency]="currency"></app-route>
+        </div>
+        <div *ngIf="result" class="button-container">
+          <p-button (onClick)="reset()" icon="fa fa-fw fa-sync-alt" iconPos="right" label="Reset" ></p-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

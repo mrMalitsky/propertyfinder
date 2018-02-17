@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+.input-container{
+  .ui-autocomplete.ui-widget{
+      width: 100%;
+      input{
+        width: calc(100% - 2em);
+      }
+  }
+}
+
+.ui-autocomplete-items.ui-autocomplete-list.ui-widget-content:hover{
+  li.ui-state-highlight{
+    background: #0073ea;
+
+  }
+}
+
+.ui-autocomplete.ui-widget{
+  .ui-autocomplete-input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+
+    &:hover, &:focus{
+      border-color: #9b9b9b
+    }
+  }
+
+  .ui-autocomplete-dropdown.ui-button{
+    color: #ddd;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid;
+
+    &:hover{
+      color: #9b9b9b;
+      border-color: #ddd;
+    }
+  }
+}
+.ui-button.ui-button-text-only{
+  color: #9b9b9b;
+  background: #fff;
+
+  &.ui-state-active{
+    background-color: #0073ea;
+    color: #fff;
+
+  }
+
+  &:hover{
+    background: rgba(0, 115, 234, 0.42) !important;
+    border: none;
+  }
+}
