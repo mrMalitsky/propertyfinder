@@ -15,7 +15,7 @@ import { FilterTypes } from '../../shared/app.constants';
   ]
 })
 
-export class SearchFormComponent implements OnInit, OnChanges {
+export class SearchFormComponent {
 
   @Input() countries: Array<string> = [];
   @Output() search = new EventEmitter();
@@ -34,15 +34,8 @@ export class SearchFormComponent implements OnInit, OnChanges {
       ];
    }
 
-  ngOnInit() { }
-
-  ngOnChanges() {
-      console.log(this.countries);
-  }
-
   filterCountry(event) {
     let query = event.query;
-    console.log(query, this.countries)
 
      this.filteredCountries = this._searchService.filterCountry(query, this.countries);
  }

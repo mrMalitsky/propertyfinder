@@ -5,6 +5,9 @@ import { IData } from '../shared/interfaces/IData';
 import { FilterTypes } from '../shared/app.constants';
 import {SearchFormComponent} from './search-form/search-form.component'
 
+var moment = require('moment');
+moment().format();
+
 @Component({
   selector: 'app-finder',
   templateUrl: './finder.component.html',
@@ -18,38 +21,12 @@ export class FinderComponent implements OnInit {
   public currency: string;
   public countries: Array<string>;
   public result: any;
-  // public  data: IData = {'currency': 'EUR',
-  //   deals: [
-  //     {'transport': 'train', 'departure': 'London', 'arrival': 'Amsterdam', 'cost': 160, "discount": 0, "duration": {
-  //         "h": "05",
-  //         "m": "30"
-  //       }},
-  //     {'transport': 'car', 'departure': 'London', 'arrival': 'Amsterdam', 'cost': 140, "discount": 0, "duration": {
-  //         "h": "05",
-  //         "m": "40"
-  //       }},
-  //     {'transport': 'bus', 'departure': 'London', 'arrival': 'Amsterdam', 'cost': 300, "discount": 70, "duration": {
-  //         "h": "05",
-  //         "m": "11"
-  //       }},
-  //     {'transport': 'train', 'departure': 'London', 'arrival': 'Berlin', 'cost': 260, "discount": 0, "duration": {
-  //         "h": "03",
-  //         "m": "30"
-  //       }},
-  //     {'transport': 'bus', 'departure': 'Amsterdam', 'arrival': 'Vinnitsa', 'cost': 40, "discount": 0, "duration": {
-  //         "h": "02",
-  //         "m": "30"
-  //       }},
-  //     {'transport': 'car', 'departure': 'Vinnitsa', 'arrival': 'London', 'cost': 120, "discount": 0, "duration": {
-  //         "h": "05",
-  //         "m": "00"
-  //       }}
-  //   ]
-  // };
+  public total: any;
 
   constructor(private _priorityService: PriorityService, private _commonService: CommonService) { }
 
   ngOnInit() {
+    this.total = {cost: 0, time: {}};
     this._commonService.getData()
      .subscribe(resData => {
        this.data = resData;
@@ -64,6 +41,21 @@ export class FinderComponent implements OnInit {
   onSearch(e) {
     // Searching
     this.result = this._priorityService.shortestPath(e.from, e.to, e.type).map((path) =>  this.data.deals[path.id]);
+    this.total.cost = 0;
+    const now = moment(new Date());
+    const endDate = moment(new Date());
+
+    this.result.forEach((item) => {
+      // Calculating of total cost
+      this.total.cost += item.cost;
+      // Calculating of totala time
+      endDate.add(item.duration.h, 'h');
+      endDate.add(item.duration.m, 'm');
+
+    })
+
+    this.total.time.h = moment.duration(endDate.diff(now)).hours();
+    this.total.time.m = moment.duration(endDate.diff(now)).minutes();
   }
 
   reset() {
@@ -72,8 +64,4 @@ export class FinderComponent implements OnInit {
     this.searchFormComponent.countruTo = null;
     this.searchFormComponent.selectedType = FilterTypes.cost;
   }
-
-
-
-
 }

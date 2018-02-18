@@ -3,7 +3,7 @@
   <div class="input-container">
     <h3>From</h3>
     <p-autoComplete [(ngModel)]="countruForm" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
-        [minLength]="1" placeholder="Type/Select Contry" [dropdown]="true">
+        [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
         <ng-template let-countru pTemplate="item">
             <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
                 <div style="font-size:18px; margin:10px 10px 0 0;">{{countru}}</div>
@@ -14,7 +14,7 @@
   <div class="input-container">
     <h3>To</h3>
     <p-autoComplete [(ngModel)]="countruTo" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
-        [minLength]="1" placeholder="Type/Select Contry" [dropdown]="true">
+        [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
         <ng-template let-countru pTemplate="item">
             <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
                 <div style="font-size:18px; margin:10px 10px 0 0;">{{countru}}</div>

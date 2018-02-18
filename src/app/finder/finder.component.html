@@ -3,16 +3,21 @@
     <div class="info">
       <app-search-form [ngClass]="{'right': result}" [countries]="countries" (search)="onSearch($event)"></app-search-form>
       <div *ngIf="!result" class="text">
-        If you want to get right route - please, fill in the form!
+        Want to discover the route? Please, fill out the form.
       </div>
       <div *ngIf="result" class="route scroll">
-        <div class="res-message">Proposed Route:</div>
+        <div class="res-message">:Proposed Route</div>
         <div *ngFor="let item of result; index as i;">
-          <strong>{{i}}</strong>
+          <strong>{{++i}}</strong>
           <app-route [item]="item" [currency]="currency"></app-route>
         </div>
+        <div class="total">
+          <span>Total</span>
+          <span class="time">{{total.time.h}}h {{total.time.m}}</span>
+          <span class="cost">{{currency}} {{total.cost}}</span>
+        </div>
         <div *ngIf="result" class="button-container">
-          <p-button (onClick)="reset()" icon="fa fa-fw fa-sync-alt" iconPos="right" label="Reset" ></p-button>
+          <p-button (onClick)="reset()" icon="fa fa-fw fa-refresh" iconPos="right" label="Reset" ></p-button>
         </div>
       </div>
 

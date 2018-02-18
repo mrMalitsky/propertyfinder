@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  font-family: 'Alegreya Sans';
+}
+
 
 .input-container{
   .ui-autocomplete.ui-widget{
@@ -9,12 +13,12 @@
   }
 }
 
-.ui-autocomplete-items.ui-autocomplete-list.ui-widget-content:hover{
-  li.ui-state-highlight{
-    background: #0073ea;
+.ui-autocomplete-items.ui-autocomplete-list.ui-widget-content
 
-  }
+li.ui-state-highlight{
+  background: #f44336;
 }
+
 
 .ui-autocomplete.ui-widget{
   .ui-autocomplete-input{
@@ -35,23 +39,54 @@
     border-bottom: 1px solid;
 
     &:hover{
-      color: #9b9b9b;
-      border-color: #ddd;
+      border-color: #9a9a9a;
+      // background: #0073ea;
+      // color: #ffffff;
+      border-radius: 0;
+      font-weight: bold;
     }
   }
 }
-.ui-button.ui-button-text-only{
-  color: #9b9b9b;
-  background: #fff;
+.ui-selectbutton{
+  width: 100%;
 
-  &.ui-state-active{
-    background-color: #0073ea;
+  .ui-button.ui-button-text-only{
+    color: #f44336;
+    width: 50%;
+    background: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+
+    &.ui-state-active{
+      background-color: #f44336;
+      color: #fff;
+    }
+
+    &:focus{
+      border-color: #fff;
+    }
+
+    &:hover{
+      background: rgb(220, 220, 220) !important;
+      border: 1px solid #fff !important;
+    }
+  }
+}
+
+button.ui-state-default.ui-button:not(.ui-autocomplete-dropdown){
+  color: #f44336;
+  border-radius: 4px;
+  font-weight: bold;
+
+  &:hover, &:focus{
+    background: #f44336;
     color: #fff;
-
   }
 
-  &:hover{
-    background: rgba(0, 115, 234, 0.42) !important;
-    border: none;
+  .ui-button-text.ui-clickable{
+    padding: 0.45em 2.5em 0.35em 1.3em;
   }
+}
+.ui-button:enabled:active, .ui-fileupload-choose:not(.ui-state-disabled):active {
+  color: #f44336;
 }
