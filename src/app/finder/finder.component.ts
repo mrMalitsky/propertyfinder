@@ -4,7 +4,7 @@ import { CommonService } from '../shared/services/common.service';
 import { IData } from '../shared/interfaces/IData';
 import { FilterTypes } from '../shared/app.constants';
 import {SearchFormComponent} from './search-form/search-form.component'
-
+declare var require: any;
 var moment = require('moment');
 moment().format();
 
