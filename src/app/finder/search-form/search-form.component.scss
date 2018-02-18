@@ -1,0 +1,35 @@
+:host{
+  display: block;
+  width: 40%;
+  height: calc(100% + 60px);
+  top: -30px;
+  left: 30px;
+  position: absolute;
+  background: #fff;
+  border-radius: 7px;
+
+  .title{
+    position: absolute;
+    top: -4vw;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 3vw;
+    width: 73%;
+    .red{
+      color: #f44336;
+    }
+  }
+
+  .search-form{
+    padding: 5%;
+
+    .button-container{
+      margin-top: 30px;
+      float: right;
+    }
+
+
+
+  }
+}

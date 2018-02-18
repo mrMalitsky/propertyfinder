@@ -1,0 +1,57 @@
+:host{
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1% 2%;
+  box-sizing: border-box;
+   background-color: #fff;
+   text-align: left;
+
+   div{
+     position: relative;
+
+     .currency{
+       position: absolute;
+        right: 0;
+        width: 26%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 18px;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: right;
+     }
+   }
+
+   .nomer{
+     font-size: 12px;
+   }
+
+   .inline{
+     display: inline-block;
+   }
+
+   .car, .train, .bus{
+     display: inline-block;
+     width: 23px;
+     height: 23px;
+     margin-bottom: -7px;
+     margin-right: 5px;
+   }
+
+   .car{
+      background-size: cover;
+      background-image: url('../../../assets/svgs/car.svg');
+   }
+
+   .bus{
+      background-size: cover;
+      background-image: url('../../../assets/svgs/bus.svg');
+   }
+
+   .train{
+      background-size: cover;
+      background-image: url('../../../assets/svgs/train.svg');
+   }
+}
