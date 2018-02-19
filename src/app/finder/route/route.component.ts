@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {IDeals} from '../../shared/interfaces/IData';
 
 @Component({
   selector: 'app-route',
@@ -23,9 +24,9 @@ import { Component, OnInit, Input } from '@angular/core';
   `,
   styleUrls: ['./route.component.scss']
 })
-export class RouteComponent{
+export class RouteComponent {
 
-  @Input() item: Array<string> = [];
+  @Input() item: IDeals;
   @Input() currency: string;
 
   constructor() { }

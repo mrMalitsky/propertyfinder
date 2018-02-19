@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { IData, IDeals } from '../../interfaces/IData';
-import { FilterTypes } from '../../app.constants';
+import {Injectable} from '@angular/core';
+import {IData, IDeals} from '../../interfaces/IData';
+import {FilterTypes} from '../../app.constants';
 
 @Injectable()
 /**
@@ -8,15 +8,15 @@ import { FilterTypes } from '../../app.constants';
  */
 export class PriorityService {
 
-  private _infinity = 1/0;
+  private _infinity = 1 / 0;
   public vertices = {};
 
   /**
-   * Add a new vertex and related edges
+   * Add a new countries
    * @param {[type]} name  [description]
    * @param {[type]} edges [description]
    */
-  addVertex(name:string, edges:any){
+  addVertex(name: string, edges: any) {
     this.vertices[name] = edges;
   }
 
@@ -25,25 +25,23 @@ export class PriorityService {
    * @param {string} start  [description]
    * @param {string} finish [description]
    */
+  shortestPath(start: string, finish: string) {
 
-   /*!!!!!!!!!! @todo: create type for "types" */
-  shortestPath(start:string, finish:string, type: FilterTypes = FilterTypes.cost){
-      // debugger;
-    let nodes = new PriorityQueue(),
+    const nodes = new PriorityQueue(),
       distances = {},
       previous = {},
-      path = [],
-      smallest,
+      path = [];
+     let smallest,
       vertex,
       neighbor,
       alt;
 
-    //Init the distances and queues variables
-    for(vertex in this.vertices){
-      if(vertex === start){
+    // Init the distances and queues variables
+    for (vertex in this.vertices) {
+      if (vertex === start) {
         distances[vertex] = 0;
         nodes.enqueue(0, vertex);
-      }else{
+      } else {
         distances[vertex] = this._infinity;
         nodes.enqueue(this._infinity, vertex);
       }
@@ -51,57 +49,62 @@ export class PriorityService {
       previous[vertex] = null;
     }
 
-    //continue as long as the queue haven't been emptied.
-    while(!nodes.empty()){
+    // Continue as long as the queue haven't been emptied.
+    while (!nodes.empty()) {
 
       smallest = nodes.dequeue();
 
-      //we are the last node
-      if(smallest === finish){
+      // We are the last node
+      if (smallest === finish) {
 
-        //Compute the path
-        while(previous[smallest]){
+        // Compute the path
+        while (previous[smallest]) {
           path.push(smallest);
           smallest = previous[smallest];
         }
         break;
       }
 
-      //No distance known. Skip.
-      if(!smallest || distances[smallest] === this._infinity){
+      // No distance known. Skip.
+      if (!smallest || distances[smallest] === this._infinity) {
         continue;
       }
 
-      //Compute the distance for each neighbor
-      for(neighbor in this.vertices[smallest]){
+      // Compute the distance for each neighbor
+      for (neighbor in this.vertices[smallest]) {
         alt = distances[smallest] + this.vertices[smallest][neighbor].value;
 
-        if(this.compareValues(alt, distances[neighbor])){
+        if (this.compareValues(alt, distances[neighbor])) {
           distances[neighbor] = alt;
           previous[neighbor] = smallest;
           nodes.enqueue(alt, neighbor);
         }
       }
     }
-    //the starting point isn't in the solution &
-    //the solution is from end to start.
-    return this.getCorrespondingId(path.concat(start).reverse()) ;
+    // The starting point isn't in the solution &
+    // The solution is from end to start.
+    return this.getCorrespondingId(path.concat(start).reverse());
 
   }
 
   getCorrespondingId(values: Array<string>) {
-    const res = values.map((v, i) => this.vertices[values[i]][values[i+1]]);
+    const res = values.map((v, i) => this.vertices[values[i]][values[i + 1]]);
     res.pop();
     return res;
   }
 
-  prepareData(data: IDeals[], by: FilterTypes = FilterTypes.cost) {
+  /**
+   * Prepare data for searching
+   * @param {IDeals[]} data
+   * @param {FilterTypes} by
+   */
+  prepareData(data: IDeals[], by: FilterTypes = FilterTypes.cost): void {
     let discount;
 
     data.forEach((deal, i) => {
 
-      discount = (by === FilterTypes.duration) ? 0 : deal['discount']/100;
-      const value = (by === FilterTypes.duration) ? (+deal[FilterTypes[by]].h + deal[FilterTypes[by]].m/100) :  (Math.round(deal[FilterTypes[by]] * (1 - discount)));
+      discount = (by === FilterTypes.duration) ? 0 : deal['discount'] / 100;
+      const value = (by === FilterTypes.duration) ? (+deal[FilterTypes[by]].h + deal[FilterTypes[by]].m / 100) : (Math.round(deal[FilterTypes[by]] * (1 - discount)));
 
       this.vertices[deal.departure] = this.vertices[deal.departure] ? this.vertices[deal.departure] : {};
       if (this.vertices[deal.departure][deal.arrival] && this.compareValues(this.vertices[deal.departure][deal.arrival].value, value)) {
@@ -109,21 +112,26 @@ export class PriorityService {
       }
 
       this.vertices[deal.departure] = Object.assign(this.vertices[deal.departure],
-         {[deal.arrival]:
-           {
-             value: value,
-             id: i
-           }
-         })
+        {
+          [deal.arrival]:
+            {
+              value: value,
+              id: i
+            }
+        });
     });
   }
 
-  getCountries() {
+  /**
+   * Get all countries name
+   * @returns {string[]}
+   */
+  getCountries(): string[] {
     return Object.keys(this.vertices);
   }
 
   compareValues(value1: any, value2: any) {
-      return value1 < value2;
+    return value1 < value2;
   }
 
 }
@@ -133,10 +141,10 @@ export class PriorityService {
  * A node for priorioty linked list / stack and such
  */
 class PriorityNode {
-  key:number;
-  priority:number;
+  key: number;
+  priority: number;
 
-  constructor(key: number,priority: number){
+  constructor(key: number, priority: number) {
     this.key = key;
     this.priority = priority;
   }
@@ -148,33 +156,33 @@ class PriorityNode {
  */
 class PriorityQueue {
 
-  nodes:PriorityNode[] = [];
+  nodes: PriorityNode[] = [];
 
   /**
    * Enqueue a new node
    * @param {[type]} priority
    * @param {[type]} key
    */
-  enqueue(priority:number, key:number){
+  enqueue(priority: number, key: number) {
     this.nodes.push(new PriorityNode(key, priority));
     this.nodes.sort(
-      function(a, b) {
+      function (a, b) {
         return a.priority - b.priority;
       }
-    )
+    );
   }
 
   /**
    * Dequeue the highest priority key
    */
-  dequeue():number{
+  dequeue(): number {
     return this.nodes.shift().key;
   }
 
   /**
    * Checks if empty
    */
-  empty():boolean{
+  empty(): boolean {
     return !this.nodes.length;
   }
 }

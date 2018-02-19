@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { PriorityService } from '../shared/services/priority/priority.service';
 import { CommonService } from '../shared/services/common.service';
 import { IData } from '../shared/interfaces/IData';
 import { FilterTypes } from '../shared/app.constants';
-import {SearchFormComponent} from './search-form/search-form.component'
+import {SearchFormComponent} from './search-form/search-form.component';
 declare var require: any;
-var moment = require('moment');
+const moment = require('moment');
 moment().format();
 
 @Component({
@@ -27,6 +27,8 @@ export class FinderComponent implements OnInit {
 
   ngOnInit() {
     this.total = {cost: 0, time: {}};
+
+    // Get data from store(json file)
     this._commonService.getData()
      .subscribe(resData => {
        this.data = resData;
@@ -38,9 +40,12 @@ export class FinderComponent implements OnInit {
       });
   }
 
-  onSearch(e) {
-    // Searching
-    this.result = this._priorityService.shortestPath(e.from, e.to, e.type).map((path) =>  this.data.deals[path.id]);
+  /**
+   * Handle searching results
+   * @param e
+   */
+  onSearch(e): void {
+    this.result = this._priorityService.shortestPath(e.from, e.to).map((path) =>  this.data.deals[path.id]);
     this.total.cost = 0;
     const now = moment(new Date());
     const endDate = moment(new Date());
@@ -58,10 +63,13 @@ export class FinderComponent implements OnInit {
     this.total.time.m = moment.duration(endDate.diff(now)).minutes();
   }
 
-  reset() {
+  /**
+   * Reset all form configuration
+   */
+  reset(): void {
     this.result = null;
-    this.searchFormComponent.countruForm = null;
-    this.searchFormComponent.countruTo = null;
+    this.searchFormComponent.countryForm = null;
+    this.searchFormComponent.countryTo = null;
     this.searchFormComponent.selectedType = FilterTypes.cost;
   }
 }
