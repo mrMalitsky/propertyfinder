@@ -2,8 +2,8 @@
 <div class="search-form">
   <div class="input-container">
     <h3>From</h3>
-    <p-autoComplete [(ngModel)]="countruForm" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
-        [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
+    <p-autoComplete [(ngModel)]="countryForm" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
+                    [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
         <ng-template let-countru pTemplate="item">
             <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
                 <div style="font-size:18px; margin:10px 10px 0 0;">{{countru}}</div>
@@ -13,8 +13,8 @@
   </div>
   <div class="input-container">
     <h3>To</h3>
-    <p-autoComplete [(ngModel)]="countruTo" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
-        [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
+    <p-autoComplete [(ngModel)]="countryTo" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
+                    [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
         <ng-template let-countru pTemplate="item">
             <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
                 <div style="font-size:18px; margin:10px 10px 0 0;">{{countru}}</div>
@@ -28,6 +28,6 @@
     <p-selectButton [options]="types" [(ngModel)]="selectedType"></p-selectButton>
   </div>
   <div class="button-container">
-    <p-button (onClick)="onSearch()" icon="fa fa-fw fa-search" iconPos="right" label="Search" [disabled]="!countruForm || !countruTo"></p-button>
+    <p-button (onClick)="onSearch()" icon="fa fa-fw fa-search" iconPos="right" label="Search" [disabled]="!countryForm || !countryTo"></p-button>
   </div>
 </div>

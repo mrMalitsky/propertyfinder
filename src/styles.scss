@@ -40,8 +40,6 @@ li.ui-state-highlight{
 
     &:hover{
       border-color: #9a9a9a;
-      // background: #0073ea;
-      // color: #ffffff;
       border-radius: 0;
       font-weight: bold;
     }
@@ -89,4 +87,8 @@ button.ui-state-default.ui-button:not(.ui-autocomplete-dropdown){
 }
 .ui-button:enabled:active, .ui-fileupload-choose:not(.ui-state-disabled):active {
   color: #f44336;
+}
+
+.ui-state-disabled{
+  pointer-events: none;
 }
