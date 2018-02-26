@@ -24,9 +24,18 @@
   .search-form{
     padding: 5%;
 
+    .heading{
+      font-size: 1.4vw;
+
+      @media screen and (max-width: 1440px){
+        font-size: 18px;
+      }
+    }
+
     .button-container{
-      margin-top: 30px;
-      float: right;
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
     }
 
 
