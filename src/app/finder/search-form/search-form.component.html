@@ -1,7 +1,7 @@
 <div class="title">Property<span class="red">finder</span></div>
 <div class="search-form">
   <div class="input-container">
-    <h3>From</h3>
+    <h3 class="heading">From</h3>
     <p-autoComplete [(ngModel)]="countryForm" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
                     [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
         <ng-template let-countru pTemplate="item">
@@ -12,7 +12,7 @@
     </p-autoComplete>
   </div>
   <div class="input-container">
-    <h3>To</h3>
+    <h3 class="heading">To</h3>
     <p-autoComplete [(ngModel)]="countryTo" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
                     [minLength]="1" placeholder="Type/Select Country" [dropdown]="true">
         <ng-template let-countru pTemplate="item">
@@ -23,8 +23,8 @@
     </p-autoComplete>
   </div>
 
-  <div>
-    <h3>Type</h3>
+  <div class="input-container">
+    <h3 class="heading">Type</h3>
     <p-selectButton [options]="types" [(ngModel)]="selectedType"></p-selectButton>
   </div>
   <div class="button-container">

@@ -17,11 +17,9 @@ import {IDeals} from '../../shared/interfaces/IData';
     </div>
     <div>
       <span class="nomer">{{item.reference}}</span>
-      <span class="transport {{item.transport}}"></span>
+      <span class="transport {{item.transport}}" title="{{item.transport}}"></span>
     </div>
-  <div>
-
-  `,
+  </div>`,
   styleUrls: ['./route.component.scss']
 })
 export class RouteComponent {

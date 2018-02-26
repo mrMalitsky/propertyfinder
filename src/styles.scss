@@ -5,6 +5,10 @@ body{
 
 
 .input-container{
+  &:not(:first-child){
+    margin-top: 2vw;
+  }
+
   .ui-autocomplete.ui-widget{
       width: 100%;
       input{
@@ -65,7 +69,7 @@ li.ui-state-highlight{
     }
 
     &:hover{
-      background: rgb(220, 220, 220) !important;
+      background: #c70000 !important;
       border: 1px solid #fff !important;
     }
   }
@@ -91,4 +95,8 @@ button.ui-state-default.ui-button:not(.ui-autocomplete-dropdown){
 
 .ui-state-disabled{
   pointer-events: none;
+}
+
+p-selectbutton{
+  font-size: 1.3vw;
 }
